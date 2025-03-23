@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect,render
 from django.template import loader
 from .forms import BookingForm
+from .models import Booking
+from .choices import RoomChoices
 
 # Create your views here.
 def getWelcomePage(request):
@@ -25,7 +27,7 @@ def getBookingPage(request):
 
         if(form.is_valid()):
             form.save()
-            return redirect('/')
+            return getSuccessPage(request,form)
 
         else:
             form=BookingForm(request.POST)
@@ -35,3 +37,20 @@ def getBookingPage(request):
             }
 
             return HttpResponse(template.render(context,request))
+
+def getSuccessPage(request,form):
+    email=form.cleaned_data['email']
+    template=loader.get_template('success.html')
+    booked=Booking.objects.get(email=email)
+    room=''
+
+    for i in RoomChoices:
+        if i==booked.room_types:
+            room=i.name
+
+    context={
+        'booked':booked,
+        'room':room
+    }
+
+    return HttpResponse(template.render(context,request))
