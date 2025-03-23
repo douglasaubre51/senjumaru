@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>
+            Book now
+        </title>
+    </head>
+
+    <body>
+        <h1>Reserve rooms</h1>
+
+        <form method='post' action=''>
+            {%csrf_token%}
+            {{form.as_p}}
+
+            <button type='submit'>book</button>
+            <button type='reset'>clear</button>
+        </form>
+    </body>
+</html>
