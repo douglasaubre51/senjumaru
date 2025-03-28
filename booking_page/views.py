@@ -54,3 +54,17 @@ def getSuccessPage(request,form):
     }
 
     return HttpResponse(template.render(context,request))
+
+def getAllUsersPage(request):
+
+    model=Booking.objects.all()
+    template=loader.get_template("allUsers.html")
+
+    for n in model:
+        n.room_label=RoomChoices(n.room_types).label
+
+
+    context={
+        "model":model,
+    }
+    return HttpResponse(template.render(context,request))

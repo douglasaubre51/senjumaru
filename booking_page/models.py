@@ -9,3 +9,4 @@ class Booking(models.Model):
     phone_no=models.IntegerField()
     room_types=models.IntegerField(choices=RoomChoices.choices, default=RoomChoices.DELUXE)
     chosen_date=models.DateField(default=date.today)
+    room_label=models.CharField(max_length=100)

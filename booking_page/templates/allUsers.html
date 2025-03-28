@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <h1>user list</h1>
+        <table border=1>
+            <tr>
+            <th>User Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Room</th>
+            <th>Chosen Date</th>
+            </tr>
+        {%for i in model%}
+
+            <tr>
+            </tr>
+            <td><h3>{{i.id}}</h3></td>
+            <td><h3>{{i.username}}</h3></td>
+        
+        <td><h3>{{i.email}}</h3></td>
+        <td><h3>{{i.phone_no}}</h3></td>
+        <td><h3>{{i.room_label}}</h3></td>
+        <td><h3>{{i.chosen_date}}</h3></td>
+        </tr>
+        {%endfor%}
+        </table>
+    </body>
+</html>
